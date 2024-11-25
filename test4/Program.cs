@@ -6,62 +6,6 @@ using System.Threading.Tasks;
 
 namespace test4
 {
-    abstract class LibraryItem
-    {
-        string title;
-        int gia;
-        DateTime ngaySanXuat;
-
-        protected LibraryItem(string title, int gia, DateTime ngaySanXuat)
-        {
-            this.title = title;
-            this.gia = gia;
-            this.ngaySanXuat = ngaySanXuat;
-        }
-
-        public string Title { get => title; set => title = value; }
-        public int Gia { get => gia; set => gia = value; }
-        public DateTime NgaySanXuat { get => ngaySanXuat; set => ngaySanXuat = value; }
-
-        public abstract void ThongTin(); 
-    }
-
-    class Book: LibraryItem
-    {
-        int soTrang;
-
-        public Book(string title, int gia, DateTime ngaySanXuat,int soTrang): base(title,gia, ngaySanXuat)
-        {
-            this.soTrang = soTrang;
-        }
-
-        public int SoTrang { get => soTrang; set => soTrang = value; }
-
-        public override void ThongTin()
-        {
-            Console.WriteLine("*********Thông tin sách*********");
-            Console.WriteLine("Tựa sách:" + Title + "\nGia: " + Gia + "\nNgày sản xuất: " + NgaySanXuat + "\nSố trang: " + soTrang);
-        }
-    }
-
-    class CD: LibraryItem
-    {
-        int thoiLuong;
-
-        public CD(string title, int gia, DateTime ngaySanXuat,int thoiLuong): base(title, gia, ngaySanXuat)
-        {
-            this.thoiLuong = thoiLuong;
-        }
-
-        public int ThoiLuong { get => thoiLuong; set => thoiLuong = value; }
-
-        public override void ThongTin()
-        {
-            Console.WriteLine("*********Thông tin CD*********");
-            Console.WriteLine("Tựa sách:" + Title + "\nGia: " + Gia + "\nNgày sản xuất: " + NgaySanXuat + "\nThời lượng: " + thoiLuong);
-        }
-
-    }
 
     class Program
     {
@@ -69,12 +13,43 @@ namespace test4
         {
 
             Console.OutputEncoding = Encoding.UTF8;
+            //***************Tính chất đóng gói***************//
+            Console.WriteLine("***************Tính chất đóng gói***************");
+            Employee em = new Employee();
 
+            em.ten = "Quang";
+            em.luong = 0;
+            em.tuoi = 23;
+
+            Console.WriteLine("Tên " + em.ten);
+            Console.WriteLine("Lương " + em.luong);
+            Console.WriteLine("Tuổi " + em.tuoi);
+
+            //***************Tính chất kế thừa***************//
+            Console.WriteLine("***************Tính chất kế thừa***************");
+            Cricle x = new Cricle { Canh = 5 };
+
+            Console.WriteLine("Diện tích " + x.dienTichHinhTron());
+
+            //***************Tính chất đa hình***************//
+            Console.WriteLine("***************Tính chất đa hình***************");
+            Animal a = new Dog();
+
+            Animal b = new Animal();
+
+            Animal c = new Cat();
+
+            Console.WriteLine("chó: " + a.MakeSoud());
+            Console.WriteLine("Mèo: " + c.MakeSoud());
+            Console.WriteLine("Animal: " + b.MakeSoud());
+
+            //***************Tính chất Trừu tượng***************//
             CD item1 = new CD("tile1", 100, DateTime.Today, 160);
+
             Book item2 = new Book("tile2", 120, DateTime.Today, 300);
 
             LibraryItem item3 = new Book("tile3", 120, DateTime.Today, 300);
-
+            Console.WriteLine("***************Tính chất Trừu tượng***************");
             item1.ThongTin();
             
             item2.ThongTin();
